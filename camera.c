@@ -1,5 +1,6 @@
 #include "headers.h"
 #include "camera.h"
+#include "jpeg_capture.h"
 #define XPOS 240
 #define YPOS 320
 
@@ -21,6 +22,7 @@ void* camera(void *data) {
         fd = open("/dev/fb", O_RDWR);
         while(1) {
 		if (camera_stop) {
+			jpeg_capture("temp.jpg", rgb);
         		sleep(1);
 			printf("camera stop!\n");
 			camera_stop = 0;

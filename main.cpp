@@ -6,11 +6,13 @@
 #include "camera.h"
 #include "timer.h"
 
+static unsigned char *buzzer_addr;
+
 int main() {
 	pthread_t camera_thread;
 	pthread_t keypad_thread;
 	pthread_t segment_thread;
-
+	
 
 	int camera_thread_id = pthread_create(&camera_thread, NULL, camera, NULL);
 	if (camera_thread_id < 0) {

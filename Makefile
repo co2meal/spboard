@@ -2,17 +2,24 @@
 CC     = arm-linux-gcc
 CXX     = arm-linux-g++
 
-CLIBS	= -lpthread
+CLIBS	= -lpthread -ljpeg
+
+INC	= /usr/include/
+
+CFLAGS = -I $(INC)
 	
 
 TARGET = aeap
 
-OBJ = main.o keypad.o camera.o timer.o
+OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o
 
 all: $(TARGET)
 
-$(TARGET): $(OBJ)
-	$(CXX) $(OBJ) -o $(TARGET) $(CLIBS)
+$(TARGET): $(OBJS)
+	$(CXX) $(CFLAGS) $(OBJS) -o $(TARGET) $(CLIBS)
 
 .c.o:
 	$(CXX) $(CFLAGS) $(INCLUDES) -c $<  -o $@
+
+clean:
+	rm *.o
