@@ -23,9 +23,9 @@ int jpeg_capture(char *filename, unsigned short RGB[]){
 
 	for(i = 0 ; i < Height ; i++){
 		for(j = Width ; j > 0 ; j--){
-			image_buffer[n++] = (((RGB[cnt] & 0xf800) >> 11) << 3);
-			image_buffer[n++] = (((RGB[cnt] & 0x07e0) >> 5) << 2);
-			image_buffer[n++] = (((RGB[cnt] & 0x001f) << 3));
+			image_buffer[n++] = (((RGB[cnt]) >> 11) << 3);
+			image_buffer[n++] = (((RGB[cnt]) << 5) >> 2);
+			image_buffer[n++] = (((RGB[cnt]) << 3));
 		}
 	}
 	cinfo.err = jpeg_std_error(&jerr);
