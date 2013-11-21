@@ -20,7 +20,6 @@ void usrsignal(int sig)
 	} else if (vkey == 16) {
 		printf("sid : %s\n", tmpsid.c_str());
 		camera_stop = 1;
-		//camera_capture();
 	}else {
 		printf("vkey : %d\n", vkey);
 		

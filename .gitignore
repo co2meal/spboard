@@ -18,3 +18,5 @@
 *.app
 
 aeap
+
+.DS_Store

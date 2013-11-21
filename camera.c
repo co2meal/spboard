@@ -15,25 +15,29 @@ void* camera(void *data) {
         unsigned short pixel;
 
         if((camera_dev = open("/dev/camera", O_RDWR)) == -1 ) {
-                printf("Can't open dev_cad(camera_dev, rgb, 153600); camera %s\n",                      camera_dev);
+                printf("Can't open dev_cad(camera_dev, rgb, 153600); camera %s\n", camera_dev);
                 exit(1);
         }
 
         fd = open("/dev/fb", O_RDWR);
+        if (fd < 0) {
+                printf("Error fbdev open\n");
+                exit(1);
+        }
         while(1) {
 		if (camera_stop) {
+			printf("camera stop!\n");
 			jpeg_capture("temp.jpg", rgb);
         		sleep(1);
-			printf("camera stop!\n");
 			camera_stop = 0;
 		}
         	read(camera_dev, rgb, 153600);
 
-                if (fd < 0) {
-                        printf("Error fbdev open\n");
-                        exit(1);
-                }
 
+		// 이렇게해보기
+		write(fd, rgb, 153600);
+
+		/*
                 for(t= 0; t < YPOS; t++) {
                         for (tt = 0; tt < XPOS; tt++) {
                                 offset = (t * XPOS * 2) + (tt * 2);
@@ -45,6 +49,7 @@ void* camera(void *data) {
                                 write(fd, &pixel, 2);
                         }
                 }
+		*/
         }
 
         close(camera_dev);
