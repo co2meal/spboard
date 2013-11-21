@@ -1,0 +1,1 @@
+void* camera(void* data);
