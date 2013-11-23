@@ -11,7 +11,7 @@
 int main() {
 	pthread_t camera_thread;
 	pthread_t keypad_thread;
-	pthread_t segment_thread;
+//	pthread_t segment_thread;
 	pthread_t led_thread;
 	
 	
@@ -28,11 +28,13 @@ int main() {
 		perror("thread create error: ");
 		exit(0);
 	}
+/*
 	int segment_thread_id = pthread_create(&segment_thread, NULL, timer, NULL);
 	if (segment_thread_id < 0) {
 	        perror("thread create error: ");
 	        exit(0);
 	}
+*/
 	int led_thread_id = pthread_create(&led_thread, NULL, led, NULL);
 	if (led_thread_id < 0) {
 	        perror("thread create error: ");
@@ -42,6 +44,6 @@ int main() {
 
 	pthread_join(camera_thread, NULL);
 	pthread_join(keypad_thread, NULL);
-	pthread_join(segment_thread, NULL);
+//	pthread_join(segment_thread, NULL);
 	pthread_join(led_thread, NULL);
 }

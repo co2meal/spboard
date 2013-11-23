@@ -36,15 +36,15 @@ void* timer(void *data){
 		value += t->tm_hour * 10000;
 		value += t->tm_min * 100;
 		value += t->tm_sec;
-	while(1){        
-		//pthread_mutex_lock(&write_mutex);
+	//while(1){        
+		pthread_mutex_lock(&write_mutex);
 		//printf("value = %d\n", value);
 		//printf("A\n");
         	write(fd,&value,4);
 		//printf("B\n");
-		//pthread_mutex_unlock(&write_mutex);
+		pthread_mutex_unlock(&write_mutex);
 		//printf("C\n");
-	}
+	//}
 
 	close(fd);
 

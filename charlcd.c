@@ -1,4 +1,4 @@
-/*
+
 #include "textlcd.h"
 #include "headers.h"
 
@@ -33,14 +33,14 @@ int charlcd(string first, string second)
 		ioctl(dev,TEXTLCD_CLEAR,&strcommand,32);
 		strcommand.pos = 0;
 		ioctl(dev,TEXTLCD_DD_ADDRESS,&strcommand,32);
-		for(i=0;i<16;i++) {//첫줄 
+		for(i=0;i<first.length();i++) {//첫줄 
 			memcpy(&strcommand.buf[0],&first.c_str()[i],16);
 			ioctl(dev,TEXTLCD_WRITE_BYTE,&strcommand,32);
 		}
 //		sleep(2);
 		strcommand.pos = 40;
 		ioctl(dev,TEXTLCD_DD_ADDRESS,&strcommand,32);
-		for(i=0;i<16;i++) {//둘쨋줄 
+		for(i=0;i<second.length();i++) {//둘쨋줄 
 			memcpy(&strcommand.buf[0],&second.c_str()[i],16);
 			ioctl(dev,TEXTLCD_WRITE_BYTE,&strcommand,32);
 		}
@@ -53,4 +53,4 @@ int charlcd(string first, string second)
 	return 0;
 }
 
-*/
+

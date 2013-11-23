@@ -13,7 +13,8 @@ LDFLAGS = -L /usr/local/arm-linux-4.1.1/lib/
 
 TARGET = aeap
 
-OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o curltest.o
+#OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o curltest.o
+OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o 
 
 all: $(TARGET)
 
@@ -23,8 +24,10 @@ $(TARGET): $(OBJS)
 .cpp.o:
 	$(CXX) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
+.cpp.o:
+	$(CXX) $(CFLAGS) -c $<  -o $@
 .c.o:
-	$(CXX) $(CFLAGS) $(INCLUDES) -c $<  -o $@
+	$(CXX) $(CFLAGS) -c $<  -o $@
 
 clean:
 	rm *.o

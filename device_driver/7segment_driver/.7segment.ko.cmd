@@ -1,0 +1,1 @@
+cmd_/home/ajou/spboard/device_driver/7segment_driver/7segment.ko := arm-linux-ld -EL -r    -o /home/ajou/spboard/device_driver/7segment_driver/7segment.ko /home/ajou/spboard/device_driver/7segment_driver/7segment.o /home/ajou/spboard/device_driver/7segment_driver/7segment.mod.o

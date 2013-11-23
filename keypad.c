@@ -1,5 +1,7 @@
 #include "headers.h"
-
+#include "charlcd.h"
+#include "buzzer.h"
+#include "timer.h"
 int keypad_dev;
 unsigned char vkey;
 char tmp;
@@ -7,7 +9,6 @@ string tmpsid;
 string text;
 
 extern int camera_stop;
-//int charlcd(string first, string second);
 
 void usrsignal(int sig)
 {
@@ -15,24 +16,52 @@ void usrsignal(int sig)
         printf("Key input: %2d\n", vkey);
 
 	if(1 <= vkey && vkey <= 9) {
+		if(tmpsid.length()>=9){
+			printf("exceed the number!!\n");
+			Buzzer_Control(2,1);
+			tmpsid="";
+			return;			
+		}
                 tmpsid+=vkey+'0';
 	} else if (vkey == 10) {
+		if(tmpsid.length()>=9){
+			printf("exceed the number!!\n");
+			Buzzer_Control(2,1);
+			tmpsid="";
+			return; 
+		}
 		tmpsid += '0';
 	} else if (vkey == 16) {
 		printf("sid : %s\n", tmpsid.c_str());
+		if(tmpsid.length()<9){
+			printf("Need More Number!!!\n");
+			Buzzer_Control(2,1);
+			tmpsid="";
+			return ;
+	}
 		camera_stop = 1;
+		tmpsid="";
+		timer(NULL);
+		
 	}else {
 		printf("vkey : %d\n", vkey);
-		
 	}
 
 	text = "press your ID";
 
-	while(tmpsid.length() < 9)
-		tmpsid += '_';
+	string second = tmpsid;
+	while(second.length() < 9)
+		second += '_';
 	
-	//charlcd(text,tmpsid);
 
+ 
+		
+	
+	//	printf("Wrong Student ID!!\n");
+		
+	
+	charlcd(text,second);
+	
         if(vkey != 16){
                 if(1<=vkey &&vkey<=9)
                         tmp = vkey;
