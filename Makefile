@@ -6,7 +6,7 @@ CLIBS	= -lpthread -ljpeg
 
 INC	= /usr/include/
 
-CFLAGS = -I $(INC)
+CFLAGS = -Wall -I $(INC)
 	
 
 TARGET = aeap

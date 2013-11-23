@@ -9,13 +9,10 @@ int camera_stop = 0;
 void* camera(void *data) {
         int camera_dev;
         int fd;
-        int t, tt;
         unsigned short rgb[XPOS*YPOS];
-        unsigned int offset;
-        unsigned short pixel;
 
         if((camera_dev = open("/dev/camera", O_RDWR)) == -1 ) {
-                printf("Can't open dev_cad(camera_dev, rgb, 153600); camera %s\n", camera_dev);
+                printf("Can't open dev_cad(camera_dev, rgb, 153600); camera %d\n", camera_dev);
                 exit(1);
         }
 
@@ -42,22 +39,6 @@ void* camera(void *data) {
                         exit(1);
                 }
 		write(fd, rgb, 153600);
-
-		
-		/*
-                for(t= 0; t < YPOS; t++) {
-                        for (tt = 0; tt < XPOS; tt++) {
-                                offset = (t * XPOS * 2) + (tt * 2);
-                                pixel = rgb[t * XPOS + tt];
-                                if (lseek(fd, offset, SEEK_SET) < 0) {
-                                        printf("ERROR fbdev lseek!\n");
-                                        exit(1);
-                                }
-                                write(fd, &pixel, 2);
-                        }
-                }
-		*/
-		
         }
 
         close(camera_dev);

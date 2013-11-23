@@ -14,7 +14,6 @@ void usrsignal(int sig)
 
 	if(1 <= vkey && vkey <= 9) {
                 tmpsid+=vkey+'0';
-		9 + '0';
 	} else if (vkey == 10) {
 		tmpsid += '0';
 	} else if (vkey == 16) {

@@ -18,12 +18,12 @@ int main() {
 		perror("thread create error: ");
 		exit(0);
 	}
-	/*
 	int keypad_thread_id = pthread_create(&keypad_thread, NULL, keypad, NULL);
 	if (keypad_thread_id < 0) {
 		perror("thread create error: ");
 		exit(0);
 	}
+	/*
 	int segment_thread_id = pthread_create(&segment_thread, NULL, timer, NULL);
 	if (segment_thread_id < 0) {
 	        perror("thread create error: ");
@@ -32,6 +32,6 @@ int main() {
 	*/
 
 	pthread_join(camera_thread, NULL);
-	//pthread_join(keypad_thread, NULL);
+	pthread_join(keypad_thread, NULL);
 	//pthread_join(segment_thread, NULL);
 }
