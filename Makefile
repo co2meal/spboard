@@ -4,12 +4,11 @@ CXX     = arm-linux-g++
 
 CLIBS	= -lpthread -ljpeg -lcurl -ljson_linux-gcc-4.1.1_libmt 
 
-INC	= /usr/local/arm-linux-4.1.1/include/
+INC	= includes
 
 CFLAGS = -Wall -I $(INC)
 
-LDFLAGS = -L /usr/local/arm-linux-4.1.1/lib/
-	
+LDFLAGS = -L /usr/local/arm-linux-4.1.1/lib
 
 TARGET = aeap
 
@@ -24,8 +23,6 @@ $(TARGET): $(OBJS)
 .cpp.o:
 	$(CXX) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
-.cpp.o:
-	$(CXX) $(CFLAGS) -c $<  -o $@
 .c.o:
 	$(CXX) $(CFLAGS) -c $<  -o $@
 
