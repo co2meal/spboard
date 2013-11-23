@@ -150,9 +150,10 @@ Json::Value attendance(string student_id, string course_id, string lecture_id, s
   bool parsingSuccessful = reader.parse( body, root );
   return root;
 }
-
+/*
 int main(void)
 {
   cout << attendance("1", "1", "30", "photo.jpg") << endl;
   cout << attendance("2", "1", "30", "photo.jpg") << endl;
 }
+*/
