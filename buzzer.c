@@ -1,7 +1,10 @@
 #include "headers.h"
 
 /* Buzzer을 제어하기 위한 물리주소 */
-#define ADDRESSOFBUZZER 0x08808000
+// #define ADDRESSOFBUZZER 0x08808000
+#define ADDRESSOFBUZZER 0x14808000
+
+
 int Buzzer_Control(int a,int b) {
          int fd;
          unsigned char *addr_buzzer;
@@ -9,6 +12,7 @@ int Buzzer_Control(int a,int b) {
                     perror("mem open fail\n");
                     exit(1);
           }
+
           /* mmap()함수를 통해 물리주소를 사용하기위한 주소할당 */
           addr_buzzer= (unsigned char *) mmap(NULL,4096,PROT_WRITE,
     MAP_SHARED,fd,ADDRESSOFBUZZER);

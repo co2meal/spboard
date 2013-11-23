@@ -1,6 +1,7 @@
 #include "headers.h"
 #include "camera.h"
 #include "jpeg_capture.h"
+#include "mutex.h"
 #define XPOS 240
 #define YPOS 320
 
@@ -22,11 +23,12 @@ void* camera(void *data) {
                 exit(1);
         }
         while(1) {
-		//if (camera_stop) {
-		if (1) {
+		if (camera_stop) {
+			pthread_mutex_lock(&write_mutex);
 			printf("camera stop!\n");
 			jpeg_capture("temp.jpg", rgb);
 			printf("picture saved!\n");
+			pthread_mutex_unlock(&write_mutex);
         		sleep(1);
 			camera_stop = 0;
 		}

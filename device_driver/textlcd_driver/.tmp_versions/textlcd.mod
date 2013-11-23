@@ -1,2 +1,2 @@
-/home/hanback1/raoudi/sm2p320/device_driver/textlcd_driver/textlcd.ko
-/home/hanback1/raoudi/sm2p320/device_driver/textlcd_driver/textlcd.o
+/home/ajou/spboard/device_driver/textlcd_driver/textlcd.ko
+/home/ajou/spboard/device_driver/textlcd_driver/textlcd.o

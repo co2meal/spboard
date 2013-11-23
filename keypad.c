@@ -4,8 +4,10 @@ int keypad_dev;
 unsigned char vkey;
 char tmp;
 string tmpsid;
+string text;
 
 extern int camera_stop;
+//int charlcd(string first, string second);
 
 void usrsignal(int sig)
 {
@@ -23,6 +25,14 @@ void usrsignal(int sig)
 		printf("vkey : %d\n", vkey);
 		
 	}
+
+	text = "press your ID";
+
+	while(tmpsid.length() < 9)
+		tmpsid += '_';
+	
+	//charlcd(text,tmpsid);
+
         if(vkey != 16){
                 if(1<=vkey &&vkey<=9)
                         tmp = vkey;
@@ -45,10 +55,10 @@ void* keypad(void* data) {
         int id = getpid();
         write(keypad_dev, &id, 4);
 
-	/*
+	
         while(1) {
         }
-	*/
+	
         close(keypad_dev);
 
 }

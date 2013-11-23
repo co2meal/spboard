@@ -26,9 +26,7 @@
 static unsigned int segment_usage = 0;
 static unsigned int segment_major = 0;
 static unsigned int segment_ioremap;
-static unsigned char *segment_data;
-static unsigned char *segment_grid;
-
+static unsigned char *segment_data; static unsigned char *segment_grid; 
 int segment_open (struct inode *inode, struct file *filp)
 {
 	if(segment_usage != 0) return -EBUSY;
@@ -83,59 +81,29 @@ unsigned char Getsegmentcode (char x)
 				
 ssize_t segment_write(struct file *inode, const char *gdata, size_t length, loff_t *off_what)
 {
-
 	unsigned char data[6];
 	unsigned char digit[6]={0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
 	unsigned int i,j,num,ret;
-	unsigned int count=0,temp1,temp2;
+	unsigned int temp1,temp2;
+	printk("I'm here!\n", num);
 
 	ret = copy_from_user(&num,gdata,4);
 	if (ret < 0) return -1;
+	printk("num = %d\n", num);
 
-/*
-		
-	while(count< num+1) {
-		data[5]=Getsegmentcode(count/100000);
-		temp1=count%100000;
-		data[4]=Getsegmentcode(temp1/10000);
-		temp2=temp1%10000;
-		data[3]=Getsegmentcode(temp2/1000);
-		temp1=temp2%1000;
-		data[2]=Getsegmentcode(temp1/100);
-		temp2=temp1%100;
-		data[1]=Getsegmentcode(temp2/10);
-		data[0]=Getsegmentcode(temp2%10);
-		for(j=0;j<100;j++) {
-			for(i=0;i<6;i++) { 
-				*segment_grid = ~digit[i];
-				*segment_data = data[i];
-				mdelay(1);
-			}
-		}
-		count++;
+	data[5]=Getsegmentcode(num/100000 % 10);
+	data[4]=Getsegmentcode(num/10000 % 10);
+	data[3]=Getsegmentcode(num/1000 % 10);
+	data[2]=Getsegmentcode(num/100 % 10);
+	data[1]=Getsegmentcode(num/10 % 10);
+	data[0]=Getsegmentcode(num/1 % 10);
+
+	for(j=0;j<500;j++)
+	for(i=0;i<6;i++) { 
+		*segment_grid = ~digit[i];
+		*segment_data = data[i];
+		mdelay(1);
 	}
-*/
-	count = num;
-	data[5]=Getsegmentcode(count/100000);
-                temp1=count%100000;
-                data[4]=Getsegmentcode(temp1/10000);
-                temp2=temp1%10000;
-                data[3]=Getsegmentcode(temp2/1000);
-                temp1=temp2%1000;
-                data[2]=Getsegmentcode(temp1/100);
-                temp2=temp1%100;
-                data[1]=Getsegmentcode(temp2/10);
-                data[0]=Getsegmentcode(temp2%10);
-
-		for(j=0;j<1000;j++) {
-			for(i=0;i<6;i++) { 
-				*segment_grid = ~digit[i];
-				*segment_data = data[i];
-				 mdelay(1);
-
-			}
-	
-		}
 
 	return length;
 }

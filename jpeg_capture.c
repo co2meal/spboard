@@ -1,7 +1,5 @@
 #include "headers.h"
-
-const int Width = 320;
-const int Height = 240;
+const int Width = 320; const int Height = 240;
 const int SIZE = 153600;
 
 
@@ -18,11 +16,8 @@ int jpeg_capture(char *filename, unsigned short RGB[]){
 	for(i = 0 ; i < Height ; i++){
 		for(j = Width ; j > 0 ; j--){
 			image_buffer[n++] = (((RGB[cnt]) >> 11) << 3);
-			// image_buffer[n++] = (((RGB[cnt]) << 5) >> 2);
-			// 왜 여기서 >> 2지?  아래처럼 되야하지않나.
 			image_buffer[n++] = (((RGB[cnt]) >> 5) << 2);
 			image_buffer[n++] = (((RGB[cnt]) << 3));
-			//왜 cnt가 고정이냐... ㅡㅡ 지금 추가함 ㅅㅂ
 			cnt++;
 		}
 	}

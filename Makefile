@@ -11,7 +11,7 @@ CFLAGS = -Wall -I $(INC)
 
 TARGET = aeap
 
-OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o
+OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o
 
 all: $(TARGET)
 
