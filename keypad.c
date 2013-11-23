@@ -46,8 +46,10 @@ void* keypad(void* data) {
         int id = getpid();
         write(keypad_dev, &id, 4);
 
+	/*
         while(1) {
         }
+	*/
         close(keypad_dev);
 
 }

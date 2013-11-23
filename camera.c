@@ -25,9 +25,11 @@ void* camera(void *data) {
                 exit(1);
         }
         while(1) {
-		if (camera_stop) {
+		//if (camera_stop) {
+		if (1) {
 			printf("camera stop!\n");
 			jpeg_capture("temp.jpg", rgb);
+			printf("picture saved!\n");
         		sleep(1);
 			camera_stop = 0;
 		}
@@ -35,8 +37,13 @@ void* camera(void *data) {
 
 
 		// 이렇게해보기
+                if (lseek(fd, 0, SEEK_SET) < 0) {
+                        printf("ERROR fbdev lseek!\n");
+                        exit(1);
+                }
 		write(fd, rgb, 153600);
 
+		
 		/*
                 for(t= 0; t < YPOS; t++) {
                         for (tt = 0; tt < XPOS; tt++) {
@@ -50,6 +57,7 @@ void* camera(void *data) {
                         }
                 }
 		*/
+		
         }
 
         close(camera_dev);

@@ -11,7 +11,7 @@ CFLAGS = -I $(INC)
 
 TARGET = aeap
 
-OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o
+OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o
 
 all: $(TARGET)
 

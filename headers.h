@@ -8,6 +8,8 @@
 #include <sys/stat.h>
 #include <string>
 #include <jpeglib.h>
+#include<sys/mman.h>
+#include<sys/ioctl.h>
 
 using namespace std;
 
