@@ -1,7 +1,7 @@
-cmd_/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o := arm-linux-gcc -Wp,-MD,/home/ajou/spboard/device_driver/dotmatrix_driver/.dotmatrix.mod.o.d  -nostdinc -isystem /SM2-P320/tools/toolchain/arm-linux-4.1.1/bin/../lib/gcc/arm-iwmmxt-linux-gnueabi/4.1.1/include -D__KERNEL__ -Iinclude  -include include/linux/autoconf.h -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Os  -fno-stack-protector -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=apcs-gnu -mno-thumb-interwork -D__LINUX_ARM_ARCH__=5 -march=armv5te -mtune=arm9tdmi  -msoft-float -Uarm -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign    -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(dotmatrix.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(dotmatrix)" -DMODULE -c -o /home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o /home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.c
+cmd_/home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o := arm-linux-gcc -Wp,-MD,/home/201120984/spboard/device_driver/dotmatrix_driver/.dotmatrix.mod.o.d  -nostdinc -isystem /usr/local/arm-linux-4.1.1/bin/../lib/gcc/arm-iwmmxt-linux-gnueabi/4.1.1/include -D__KERNEL__ -Iinclude  -include include/linux/autoconf.h -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -O2  -fno-stack-protector -marm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -mabi=aapcs-linux -mno-thumb-interwork -D__LINUX_ARM_ARCH__=5 -march=armv5te -mtune=xscale -Wa,-mcpu=xscale  -msoft-float -Uarm -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wno-pointer-sign    -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(dotmatrix.mod)"  -D"KBUILD_MODNAME=KBUILD_STR(dotmatrix)" -DMODULE -c -o /home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o /home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.c
 
-deps_/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o := \
-  /home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.c \
+deps_/home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o := \
+  /home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.c \
     $(wildcard include/config/module/unload.h) \
   include/linux/module.h \
     $(wildcard include/config/modules.h) \
@@ -47,6 +47,8 @@ deps_/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o := \
     $(wildcard include/config/dram/base.h) \
     $(wildcard include/config/discontigmem.h) \
   include/asm/arch/memory.h \
+    $(wildcard include/config/mach/armcore.h) \
+    $(wildcard include/config/pci.h) \
   include/asm/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
@@ -72,7 +74,7 @@ deps_/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o := \
     $(wildcard include/config/debug/spinlock/sleep.h) \
     $(wildcard include/config/printk.h) \
     $(wildcard include/config/numa.h) \
-  /SM2-P320/tools/toolchain/arm-linux-4.1.1/bin/../lib/gcc/arm-iwmmxt-linux-gnueabi/4.1.1/include/stdarg.h \
+  /usr/local/arm-linux-4.1.1/bin/../lib/gcc/arm-iwmmxt-linux-gnueabi/4.1.1/include/stdarg.h \
   include/linux/bitops.h \
   include/asm/bitops.h \
   include/asm-generic/bitops/non-atomic.h \
@@ -213,28 +215,50 @@ deps_/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o := \
   include/linux/smp.h \
   include/asm/topology.h \
   include/asm-generic/topology.h \
-  include/linux/slab_def.h \
-  include/linux/kmalloc_sizes.h \
+  include/linux/slub_def.h \
+    $(wildcard include/config/slub/stats.h) \
+    $(wildcard include/config/slub/debug.h) \
+  include/linux/workqueue.h \
+  include/linux/timer.h \
+    $(wildcard include/config/timer/stats.h) \
+  include/linux/ktime.h \
+    $(wildcard include/config/ktime/scalar.h) \
+  include/linux/jiffies.h \
+  include/linux/calc64.h \
+  include/asm/div64.h \
+  include/linux/timex.h \
+    $(wildcard include/config/no/hz.h) \
+  include/asm/param.h \
+    $(wildcard include/config/hz.h) \
+  include/asm/timex.h \
+  include/asm/arch/timex.h \
+    $(wildcard include/config/pxa25x.h) \
+    $(wildcard include/config/pxa27x.h) \
+    $(wildcard include/config/mach/mainstone.h) \
   include/asm/percpu.h \
   include/asm-generic/percpu.h \
     $(wildcard include/config/have/setup/per/cpu/area.h) \
   include/linux/hardirq.h \
     $(wildcard include/config/virt/cpu/accounting.h) \
     $(wildcard include/config/preempt/rcu.h) \
-    $(wildcard include/config/no/hz.h) \
   include/linux/smp_lock.h \
     $(wildcard include/config/lock/kernel.h) \
   include/asm/hardirq.h \
   include/asm/irq.h \
   include/asm/arch/irqs.h \
-  include/asm/arch/platform.h \
-    $(wildcard include/config/arch/versatile/pb.h) \
-    $(wildcard include/config/mach/versatile/ab.h) \
+    $(wildcard include/config/pxa3xx.h) \
+    $(wildcard include/config/sa1111.h) \
+    $(wildcard include/config/sharp/locomo.h) \
+    $(wildcard include/config/arch/lubbock.h) \
+    $(wildcard include/config/mach/logicpd/pxa270.h) \
+    $(wildcard include/config/mach/pcm027.h) \
+    $(wildcard include/config/mach/sm2/p320.h) \
+    $(wildcard include/config/pci/host/ite8152.h) \
   include/linux/irq_cpustat.h \
   include/asm/module.h \
   include/linux/vermagic.h \
   include/linux/utsrelease.h \
 
-/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o: $(deps_/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o)
+/home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o: $(deps_/home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o)
 
-$(deps_/home/ajou/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o):
+$(deps_/home/201120984/spboard/device_driver/dotmatrix_driver/dotmatrix.mod.o):

@@ -9,7 +9,7 @@
 #include "buzzer.h"
 #include "led.h"
 #include "curltest.h"
-
+#include "dotmatrix.h"
 int main() {
 	pthread_t camera_thread;
 	pthread_t keypad_thread;
@@ -45,7 +45,7 @@ int main() {
 
 	cout << "TQ?" << endl;
 
-	curltest();
+	//curltest();
 
 	//cout << attendance("1", "1", "30", "photo.jpg") << endl;
 	//cout << attendance("2", "1", "30", "photo.jpg") << endl;

@@ -13,7 +13,7 @@ LDFLAGS = -L libs
 
 TARGET = aeap
 
-OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o popen.o
+OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o attendance.o dotmatrix.o
 #OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o 
 
 all: $(TARGET)

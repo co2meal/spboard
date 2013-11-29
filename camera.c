@@ -1,7 +1,10 @@
 #include "headers.h"
 #include "camera.h"
+#include "keypad.h"
 #include "jpeg_capture.h"
 #include "mutex.h"
+#include "attendance.h"
+#include "dotmatrix.h"
 #define XPOS 240
 #define YPOS 320
 
@@ -29,7 +32,33 @@ void* camera(void *data) {
 			jpeg_capture("temp.jpg", rgb);
 			printf("picture saved!\n");
 			pthread_mutex_unlock(&write_mutex);
+			execl("/usr/local/bin/madplay", "/usr/local/bin/madplay", "/root/mpthreetest.mp3", NULL);
+			cout << attendance(sid,"1","temp.jpg") << endl;
+			Json::Value res = attendance(sid,"1","temp.jpg");
+			if(res["status"]== "sucess")
+				printf("OK!!!!\n");
+			else if(res["status"]== "late")
+				printf("half OK!!!!\n");
+			else
+				printf("NO OK!!!!!\n");
+
+			if(res["status"]=="sucess"||res["status"]=="late")
+			{
+				if(res["authenticated"]=="warning")
+					printf("you die!\n");
+
+				else
+					printf("Good Student!!\n");
+			}
+
+
+			if (1) {
+				dotmatrix(23);
+			} else {
+				dotmatrix(10);
+			}
         		sleep(1);
+			
 			camera_stop = 0;
 		}
         	read(camera_dev, rgb, 153600);

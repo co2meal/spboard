@@ -6,6 +6,7 @@ int keypad_dev;
 unsigned char vkey;
 char tmp;
 string tmpsid;
+string sid;
 string text;
 
 extern int camera_stop;
@@ -38,10 +39,12 @@ void usrsignal(int sig)
 			Buzzer_Control(2,1);
 			tmpsid="";
 			return ;
-	}
+		}
+
 		camera_stop = 1;
+		sid = tmpsid;
 		tmpsid="";
-		timer(NULL);
+	     //	timer(NULL);
 		
 	}else {
 		printf("vkey : %d\n", vkey);
