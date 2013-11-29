@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 #include <pthread.h>
 #include "headers.h"
 #include "keypad.h"
@@ -7,6 +8,7 @@
 #include "timer.h"
 #include "buzzer.h"
 #include "led.h"
+#include "curltest.h"
 
 int main() {
 	pthread_t camera_thread;
@@ -41,6 +43,12 @@ int main() {
 	        exit(0);
 	}
 
+	cout << "TQ?" << endl;
+
+	curltest();
+
+	//cout << attendance("1", "1", "30", "photo.jpg") << endl;
+	//cout << attendance("2", "1", "30", "photo.jpg") << endl;
 
 	pthread_join(camera_thread, NULL);
 	pthread_join(keypad_thread, NULL);

@@ -5,7 +5,7 @@ CC     = arm-linux-gcc
 
 obj-m := dotmatrix.o
 
-KDIR := /working/linux-2.6.25-sm2_p320
+KDIR := /linux-2.6.25-sm2_p320
 
 PWD := $(shell pwd)
 

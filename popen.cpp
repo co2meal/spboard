@@ -2,7 +2,6 @@
 #include <sstream>
 #include <iostream>
 #include <json/json.h>
-#include <curl/curl.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
@@ -24,7 +23,7 @@ Json::Value attendance(string student_id, string course_id, string lecture_id, s
   int status;
   char result[1035];
 
-  fp = popen(string("curl -s -F attendance[student_id]=" + student_id + " -F attendance[picture][image]=@" + filename + " http://localhost:3000/courses/1/lectures/10/attendances.json").c_str(), "r");
+  fp = popen(string("curl -s -X POST -H 'Content-Type: image/jpeg' --data-binary @" + filename + " 'http://192.168.0.227:3000/courses/1/lectures/10/attendances.json?attendance\\[student_id\\]=" + student_id + "&filename=" + filename + "'").c_str(), "r");
   if (fp == NULL) {
     printf("Failed to run command \n");
     return root;
@@ -42,7 +41,7 @@ Json::Value attendance(string student_id, string course_id, string lecture_id, s
   return root;
 }
 
-int main(void)
+void curltest(void)
 {
   cout << attendance("1", "1", "30", "photo.jpg") << endl;
   cout << attendance("2", "1", "30", "photo.jpg") << endl;

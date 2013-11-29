@@ -2,18 +2,19 @@
 CC     = arm-linux-gcc
 CXX     = arm-linux-g++
 
-CLIBS	= -lpthread -ljpeg -lcurl -ljson_linux-gcc-4.1.1_libmt 
+CLIBS	= -lpthread -lz -ljpeg -ljson_linux-gcc-4.1.1_libmt
+#CLIBS	= -lpthread -ljpeg
 
 INC	= includes
 
 CFLAGS = -Wall -I $(INC)
 
-LDFLAGS = -L /usr/local/arm-linux-4.1.1/lib
+LDFLAGS = -L libs
 
 TARGET = aeap
 
-#OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o curltest.o
-OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o 
+OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o popen.o
+#OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o 
 
 all: $(TARGET)
 
@@ -28,3 +29,4 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm *.o
+	rm $(TARGET)

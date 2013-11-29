@@ -15,7 +15,35 @@ size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata) {
     return count;
 }
 
+void curltest() {
+
+  CURL *curl;
+  CURLcode res;
+ 
+  static const char *postthis="moo mooo moo moo";
+ 
+  curl = curl_easy_init();
+  if(curl) {
+    curl_easy_setopt(curl, CURLOPT_URL, "http://naver.com");
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postthis);
+ 
+    /* if we don't provide POSTFIELDSIZE, libcurl will strlen() by
+ *        itself */ 
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+ 
+    /* Perform the request, res will get the return code */ 
+    res = curl_easy_perform(curl);
+    /* Check for errors */ 
+    if(res != CURLE_OK)
+      fprintf(stderr, "curl_easy_perform() failed: %s\n",
+              curl_easy_strerror(res));
+ 
+    /* always cleanup */ 
+    curl_easy_cleanup(curl);
+  }
+}
 Json::Value attendance(string student_id, string course_id, string lecture_id, string filename) {
+  cout << "QQ" << endl;
 
   CURL *curl;
   CURLM *multi_handle;
@@ -32,6 +60,7 @@ Json::Value attendance(string student_id, string course_id, string lecture_id, s
  
   /* Fill in the file upload field. This makes libcurl load data from
      the given file name when curl_easy_perform() is called. */ 
+  cout << "ha" << endl;
   curl_formadd(&formpost,
                &lastptr,
                CURLFORM_COPYNAME, "attendance[picture][image]",
@@ -39,6 +68,7 @@ Json::Value attendance(string student_id, string course_id, string lecture_id, s
                CURLFORM_END);
  
   /* Fill in the submit field too, even if this is rarely needed */ 
+  cout << "hb" << endl;
   curl_formadd(&formpost,
                &lastptr,
                CURLFORM_COPYNAME, "attendance[student_id]",
@@ -49,6 +79,7 @@ Json::Value attendance(string student_id, string course_id, string lecture_id, s
                CURLFORM_COPYNAME, "submit",
                CURLFORM_COPYCONTENTS, "send",
                CURLFORM_END);
+  cout << "hc" << endl;
  
   curl = curl_easy_init();
   multi_handle = curl_multi_init();
@@ -150,6 +181,7 @@ Json::Value attendance(string student_id, string course_id, string lecture_id, s
   bool parsingSuccessful = reader.parse( body, root );
   return root;
 }
+
 /*
 int main(void)
 {

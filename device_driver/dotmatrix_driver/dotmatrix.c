@@ -29,10 +29,10 @@ static unsigned short *dot_row_addr;
 static unsigned short *dot_col_addr;
 
 unsigned short font_num[40]= {
-	0x7f, 0x41, 0x41, 0x7f,  // 0
-	0x40, 0x7f, 0x42, 0x00,  // 1
-	0x4f, 0x49, 0x49, 0x79,  // 2
-	0x7f, 0x49, 0x49, 0x49,  // 3
+	0x41, 0x22, 0x14, 0x08,  // 0
+	0x08, 0x14, 0x22, 0x41,  // 1
+	0x7f, 0x41, 0x41, 0x7f,  // 2//0
+	0x41, 0x22, 0x14, 0x7f,  // 3//k
 	0x10, 0x7f, 0x10, 0x1f,  // 4
 	0x79, 0x49, 0x49, 0x4f,  // 5
 	0x79, 0x49, 0x49, 0x7f,  // 6
@@ -94,9 +94,11 @@ ssize_t dot_write(struct file *inode, const char *gdata, size_t length, loff_t *
 				dispdata[k+4] = font_num[second_data*NUMSIZE+k];
 			}
 		}
-		
-		for(i=0;i<30;i++) {
+
+
+		for(i=0;i<150;i++) {
 			for(j=0;j<size;j++) {
+				if(up_digit*10 + cnt == 10&&counter==10){
 				if(j<4)	{
 					*dot_col_addr = init_col1 >> j;
 					*dot_row_addr = dispdata[j];
@@ -105,9 +107,41 @@ ssize_t dot_write(struct file *inode, const char *gdata, size_t length, loff_t *
 					*dot_row_addr = dispdata[j];
 				}
 				mdelay(DELAY);
+				}
 			}
+			
 		}
-	
+
+		
+		for(i=0;i<150;i++) {
+			for(j=0;j<size;j++) {
+				if((up_digit*10 + cnt == 23) && counter == 23){
+				if(j<4)	{
+					*dot_col_addr = init_col1 >> j;
+					*dot_row_addr = dispdata[j];
+				} else {
+					*dot_col_addr = init_col2 >> (j-4);
+					*dot_row_addr = dispdata[j];
+				}
+				mdelay(DELAY);
+				}
+			}
+			
+		}
+
+
+	/*
+
+	for(i=0; i<30; i++){
+for(j=0;j<size;j++) {
+				if(j<4)	{
+		*dot_col_addr = init_col1;
+		*dot_row_addr = dispdata[0]; 
+}
+}
+}*/
+
+
 		if(counter == (up_digit*10 + cnt)) {
 			quit = 0;
 			break;

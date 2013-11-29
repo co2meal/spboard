@@ -1,0 +1,30 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+CC	Makefile	/^CC= arm-linux-gcc$/;"	m
+CHANNELS	main.c	15;"	d	file:
+Init_audio	audio_lib.c	/^char Init_audio(int rate){$/;"	f
+LENGTH	main.c	12;"	d	file:
+OBJS	Makefile	/^OBJS= main.o audio_lib.o keyboard.o$/;"	m
+Play_Audio_Data	audio_lib.c	/^void Play_Audio_Data(char* buf,int size)$/;"	f
+Record_Audio_Data	audio_lib.c	/^int Record_Audio_Data(char* buf,int size)$/;"	f
+SAMPLE_SIZE	audio_lib.c	4;"	d	file:
+SAMPLING_RATE	main.c	13;"	d	file:
+SIZE	main.c	14;"	d	file:
+STEREO	audio_lib.c	3;"	d	file:
+_AUDIO_LIB_	audio_lib.h	2;"	d
+_KEY_BOARD_	keyboard.h	2;"	d
+buf	main.c	/^char buf[LENGTH*SAMPLING_RATE*SIZE*CHANNELS\/8];$/;"	v
+close_audio	audio_lib.c	/^void close_audio()$/;"	f
+close_keyboard	keyboard.c	/^void close_keyboard() {$/;"	f
+fd	audio_lib.c	/^int fd;	\/* sound device file descriptor *\/$/;"	v
+init_keyboard	keyboard.c	/^void init_keyboard() {$/;"	f
+initial_settings	keyboard.c	/^static struct termios initial_settings, new_settings;$/;"	v	typeref:struct:termios	file:
+kbhit	keyboard.c	/^int kbhit() {$/;"	f
+main	main.c	/^int main()$/;"	f
+new_settings	keyboard.c	/^static struct termios initial_settings, new_settings;$/;"	v	typeref:struct:	file:
+peek_character	keyboard.c	/^static int peek_character = -1;$/;"	v	file:
+readch	keyboard.c	/^int readch() {$/;"	f
