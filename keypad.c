@@ -2,6 +2,7 @@
 #include "charlcd.h"
 #include "buzzer.h"
 #include "timer.h"
+
 int keypad_dev;
 unsigned char vkey;
 char tmp;
