@@ -1,8 +1,8 @@
 #include<string>
 using namespace std;
 
-void* keypad(void* data);
+void pressed(int);
 
 
 extern string sid;
-
+extern int keypad_dev;

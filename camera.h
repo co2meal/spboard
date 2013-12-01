@@ -1,1 +1,3 @@
-void* camera(void* data);
+void camera();
+
+extern int captured;

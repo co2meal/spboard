@@ -11,6 +11,10 @@
 #include <jpeglib.h>
 #include<sys/mman.h>
 #include<sys/ioctl.h>
+#include <linux/input.h>
+#include <iostream>
 
 using namespace std;
 
+
+extern int active_mode, waiting_mode;

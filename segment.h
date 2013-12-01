@@ -1,0 +1,1 @@
+void* segment(void* data);

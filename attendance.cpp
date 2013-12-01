@@ -24,8 +24,8 @@ Json::Value attendance(string student_id, string course_id, string filename) {
   char result[1035];
 
   mark_communicating(1);
-  // cmd = curl -s -X POST -H 'Content-Type: image/jpeg' --data-binary @temp.jpg 'http://192.168.0.227:3000/courses/1/attendances.json?attendance\[student_id\]=201020323&filename=temp.jpg'
-  string cmd = string("curl -s -X POST -H 'Content-Type: image/jpeg' --data-binary @" + filename + " 'http://overpl.us:3000/courses/" + course_id + "/attendances.json?attendance\\[student_id\\]=" + student_id + "&filename=" + filename + "'");
+  // cmd = curl -s -X POST -H 'Content-Type: image/jpeg' --data-binary @temp.jpg 'http://overpl.us:3000/courses/1/attendances.json?attendance\[student_id\]=201020323&filename=temp.jpg'
+  string cmd = string("curl -s --connect-timeout 60 -X POST -H 'Content-Type: image/jpeg' --data-binary @" + filename + " 'http://overpl.us:3000/courses/" + course_id + "/attendances.json?attendance\\[student_id\\]=" + student_id + "&filename=" + filename + "'");
   cout << cmd << endl;
   fp = popen(cmd.c_str(), "r");
   if (fp == NULL) {
@@ -44,6 +44,9 @@ Json::Value attendance(string student_id, string course_id, string filename) {
   cout << body << endl;
   
   bool parsingSuccessful = reader.parse( body, root );
+  if (!parsingSuccessful) {
+    reader.parse("{\"error\": \"Server error!\"}", root);
+  }
   mark_communicating(0);
   return root;
 }

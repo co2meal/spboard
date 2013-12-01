@@ -1,5 +1,6 @@
 #include "headers.h"
 #include "led.h"
+#include "camera.h"
 
 int communicating;
 unsigned char buff = 170;
@@ -20,23 +21,18 @@ void led_off(){
 }
 
 void* led(void *data) {
-	
-
 	dev = open("/dev/led", O_WRONLY);
 
 	if (dev != -1) {
-		/*if(argv[1][0] == '0' && (argv[1][1] == 'x' || argv[1][1] == 'X'))
-			buff  = (unsigned char)strtol(&argv[1][2],NULL,16);
-		else 		
-			buff = atoi(argv[1]);
-		write(dev,&buff,1);*/
-		while(1){
-		if (communicating == 1){
-			led_on();
-			usleep(50000);
-			led_shuffle();
-		} 
-		else {led_off();}
+		while(active_mode){
+			if (communicating == 1){
+				led_on();
+				usleep(50000);
+				led_shuffle();
+			} 
+			else {
+				led_off();
+			}
 		}
 		close(dev);
 	} 

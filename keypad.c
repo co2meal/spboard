@@ -1,7 +1,7 @@
 #include "headers.h"
 #include "charlcd.h"
 #include "buzzer.h"
-#include "timer.h"
+#include "camera.h"
 
 int keypad_dev;
 unsigned char vkey;
@@ -10,9 +10,7 @@ string tmpsid;
 string sid;
 string text;
 
-extern int camera_stop;
-
-void usrsignal(int sig)
+void pressed(int sig)
 {
         read(keypad_dev, &vkey, 1);
         printf("Key input: %2d\n", vkey);
@@ -42,10 +40,9 @@ void usrsignal(int sig)
 			return ;
 		}
 
-		camera_stop = 1;
+		captured = 1;
 		sid = tmpsid;
 		tmpsid="";
-	     //	timer(NULL);
 		
 	}else {
 		printf("vkey : %d\n", vkey);
@@ -58,10 +55,7 @@ void usrsignal(int sig)
 		second += '_';
 	
 
- 
-		
-	
-	//	printf("Wrong Student ID!!\n");
+
 		
 	
 	charlcd(text,second);
@@ -76,24 +70,4 @@ void usrsignal(int sig)
 
         }
 }
-
-void* keypad(void* data) {
-        keypad_dev = open("/dev/keypad", O_RDWR);
-        if(keypad_dev<0) {
-                printf("application : keypad driver open fail!.\n");
-                exit(1);
-        }
-
-        (void)signal(SIGUSR1, usrsignal);
-        int id = getpid();
-        write(keypad_dev, &id, 4);
-
-	
-        while(1) {
-        }
-	
-        close(keypad_dev);
-
-}
-
 

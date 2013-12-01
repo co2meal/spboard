@@ -3,7 +3,6 @@ CC     = arm-linux-gcc
 CXX     = arm-linux-g++
 
 CLIBS	= -lpthread -lz -ljpeg -ljson_linux-gcc-4.1.1_libmt
-#CLIBS	= -lpthread -ljpeg
 
 INC	= includes
 
@@ -13,8 +12,7 @@ LDFLAGS = -L libs
 
 TARGET = aeap
 
-OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o attendance.o dotmatrix.o
-#OBJS = main.o keypad.o camera.o timer.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o 
+OBJS = main.o keypad.o camera.o segment.o jpeg_capture.o buzzer.o mutex.o led.o charlcd.o attendance.o dotmatrix.o touch.o EasyBMP.o
 
 all: $(TARGET)
 
